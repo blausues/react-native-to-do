@@ -33,7 +33,7 @@ function App() {
     }
 
     const onRemove = id => {
-        const nextTodos = todos.fillter(todo => todo.id !== id);
+        const nextTodos = todos.filter(todo => todo.id !== id);
         setTodos(nextTodos);
     }
 
