@@ -1,10 +1,14 @@
 module.exports = {
-    env: {browser: true, es6: true, node: true},
-    extends: ['eslint:recommended', 'airbnb', 'plugin:prettier/recommended'],
+    root: true,
+    extends: ['airbnb', '@react-native-community'],
     rules: {
-        'react/jsx-filename-extension': [
-            'error',
-            {extensions: ['.js', '.jsx']},
+        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+        'react/function-component-definition': [
+            2,
+            {
+                namedComponents: 'arrow-function',
+                unnamedComponents: 'arrow-function',
+            },
         ],
     },
 };
