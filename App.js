@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import {SafeAreaView, StyleSheet, KeyboardAvoidingView, Platform} from 'react-native';
+import React, {useState} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import DateHead from './components/DateHead';
 import AddTodo from './components/AddTodo';
 import Empty from './components/Empty';
 import TodoList from './components/TodoList';
 
-function App() {
+const App = () => {
     const today = new Date();
     const [todos, setTodos] = useState([
         {id: 1, text: '할 일 1', done: true},
@@ -14,7 +14,7 @@ function App() {
     ]);
 
     const onInsert = text => {
-        const nextId = 
+        const nextId =
             todos.length > 0 ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;
         const todo = {
             id: nextId,
@@ -23,28 +23,36 @@ function App() {
         };
 
         setTodos(todos.concat(todo));
-    }
+    };
 
     const onToggle = id => {
-        const nextTodos = todos.map(todo => 
-            todo.id === id ? {...todo, done: !todo.done} : todo,
+        const nextTodos = todos.map(todo =>
+            todo.id === id ? {...todo, done: !todo.done} : todo
         );
         setTodos(nextTodos);
-    }
+    };
 
     const onRemove = id => {
         const nextTodos = todos.filter(todo => todo.id !== id);
         setTodos(nextTodos);
-    }
+    };
 
     return (
         <SafeAreaView style={styles.block}>
             <DateHead date={today} />
-            {todos.length === 0 ? <Empty /> : <TodoList todos={todos} onToggle={onToggle} onRemove={onRemove} />}
+            {todos.length === 0 ? (
+                <Empty />
+            ) : (
+                <TodoList
+                    todos={todos}
+                    onToggle={onToggle}
+                    onRemove={onRemove}
+                />
+            )}
             <AddTodo onInsert={onInsert} />
         </SafeAreaView>
     );
-}
+};
 
 const styles = StyleSheet.create({
     block: {
